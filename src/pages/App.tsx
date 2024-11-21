@@ -27,6 +27,20 @@ const App: React.FC = () => {
       setSchema(null); // If invalid JSON is entered, set schema to null
     }
   };
+   // Copy JSON to clipboard
+   const copyJsonToClipboard = () => {
+    if (schema) {
+      navigator.clipboard.writeText(JSON.stringify(schema, null, 2))
+        .then(() => {
+          alert("Form JSON copied to clipboard!");
+        })
+        .catch(() => {
+          alert("Failed to copy JSON.");
+        });
+    } else {
+      alert("No JSON to copy!");
+    }
+  };
 
   return (
     <div className={`h-screen flex flex-col ${darkMode ? 'dark' : ''}`}>
@@ -44,6 +58,12 @@ const App: React.FC = () => {
         <div className="border p-4 rounded bg-white dark:bg-gray-800 dark:text-white">
           <h2 className="text-xl font-semibold mb-2">Enter JSON Schema</h2>
           <JsonEditor onChange={handleJsonChange} />
+          <button
+            onClick={copyJsonToClipboard}
+            className="mt-4 bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600"
+          >
+            Copy Form JSON
+          </button>
         </div>
         <div className="border p-4 rounded bg-white dark:bg-gray-800 dark:text-white">
           <h2 className="text-xl font-semibold mb-2">Generated Form</h2>
