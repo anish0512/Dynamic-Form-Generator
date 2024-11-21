@@ -1,6 +1,9 @@
 {
   "scripts": {
-    "start": "vite"
+    
+    "start": "vite",
+    "postinstall": "chmod -R 755 node_modules/.bin"
+    
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.3.3",
