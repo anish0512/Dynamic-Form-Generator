@@ -1,8 +1,8 @@
 {
   "scripts": {
     
-    "start": "vite",
-    "postinstall": "chmod -R 755 node_modules/.bin"
+    "build": "vite build"
+   
     
   },
   "devDependencies": {
