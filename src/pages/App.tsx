@@ -9,9 +9,11 @@ const App: React.FC = () => {
 
   // State for storing the schema
   const [schema, setSchema] = useState<any>(null);
+  const [formData, setFormData] = useState<Record<string, any> | null>(null);
 
   // Toggle dark mode when the state changes
   useEffect(() => {
+    // Toggle the 'dark' class on the body element
     if (darkMode) {
       document.body.classList.add("dark");
     } else {
@@ -43,15 +45,14 @@ const App: React.FC = () => {
   };
 
   return (
-    <div className={`h-screen flex flex-col ${darkMode ? 'dark' : ''}`}>
-      <header className="bg-gray-800 text-white p-4 flex justify-between items-center">
-        <h1 className="text-2xl font-bold">Dynamic Form Generator</h1>
-        {/* Dark Mode Toggle Button */}
+    <div className="h-screen flex flex-col">
+      <header className="bg-gray-800 text-white p-4 flex justify-between">
+        <h1 className="text-2xl font-bold text-white">Dynamic Form Generator</h1>
         <button
-          onClick={() => setDarkMode(!darkMode)}
-          className="bg-yellow-500 text-white py-2 px-4 rounded"
-        >
-          {darkMode ? "Light Mode" : "Dark Mode"}
+           onClick={() => setDarkMode((prevMode) => !prevMode)}
+           className="p-2 bg-gray-800 text-white rounded hover:bg-gray-600 transition-colors"
+          >
+          {darkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
         </button>
       </header>
       <main className="flex-grow grid grid-cols-1 md:grid-cols-2 gap-4 p-4">

@@ -1,13 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
-    body {
-      background-color: #fff;
-      color: #333;
+    /* Dark mode text color */
+    body.dark {
+      background-color: #1f2937; /* Dark background */
+      color: white; /* Default text color in dark mode */
     }
-    .dark body {
-      background-color: #1a202c; /* Dark background */
-      color: #e2e8f0; /* Light text color */
+  
+    /* Light mode text color */
+    body {
+      background-color: white; /* Light background */
+      color: black; /* Default text color in light mode */
     }
   }

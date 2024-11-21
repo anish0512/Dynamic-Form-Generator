@@ -15,19 +15,21 @@ const JsonEditor: React.FC<JsonEditorProps> = ({ onChange }) => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-xl font-bold mb-2">JSON Editor</h2>
-      <textarea
-        className={`w-full h-80 border ${
-          isValid ? "border-gray-300" : "border-red-500"
-        } p-2 rounded`}
-        value={jsonInput}
-        onChange={handleInputChange}
-        placeholder="Paste your JSON schema here..."
-      />
-      {error && <p className="text-red-500 mt-2">{error}</p>}
-    </div>
-  );
+    <div className="p-4 bg-white dark:bg-gray-800 rounded-md shadow-md">
+    <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-gray-100">JSON Editor</h2>
+    <textarea
+      className={`w-full h-80 border p-2 rounded 
+        ${isValid ? "border-gray-300 dark:border-gray-700" : "border-red-500"}
+        bg-white dark:bg-gray-900
+        text-gray-900 dark:text-gray-100
+      `}
+      value={jsonInput}
+      onChange={handleInputChange}
+      placeholder="Paste your JSON schema here..."
+    />
+    {error && <p className="text-red-500 mt-2 dark:text-red-400">{error}</p>}
+  </div>
+);
 };
 
 export default JsonEditor;
