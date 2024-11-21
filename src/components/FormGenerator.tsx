@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { FormSchema } from "../../types/schema";
+import { useEffect } from "react";
 
 
 interface FormGeneratorProps {
@@ -8,7 +9,13 @@ interface FormGeneratorProps {
 }
 
 const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+  useEffect(() => {
+    if (schema) {
+      reset();  // Reset form fields when the schema changes
+    }
+  }, [schema, reset]);
 
   if (!schema) {
     return <p className="text-gray-500">Please enter a valid schema.</p>;
@@ -57,6 +64,13 @@ const FormGenerator: React.FC<FormGeneratorProps> = ({ schema }) => {
                   </option>
                 ))}
               </select>
+            ) :field.type === "textarea" ? (
+              <textarea
+                id={field.id}
+                {...register(field.id, { required: field.required })}
+                placeholder={field.placeholder}
+                className="border rounded p-2 h-24"
+              />
             ) : null}
             {errors[field.id] && (
               <p className="text-red-500 text-sm mt-1">
